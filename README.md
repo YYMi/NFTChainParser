@@ -94,6 +94,8 @@ go run main.go
 ## API 文档
 
 该项目包含使用 Swagger 自动生成的 API 文档。您可以通过访问以下地址查看 Swagger 文档：
+Swagger-相关注释等已经开发了一个插件swag-note  按照标准模板写代码 可以自己生成相关注释
+gormt  插件在原本的基础上也添加了新的功能 ， 可以指定读取配置文件在生成相关代码 
 
 ```
 http://localhost:8080/swagger/index.html
@@ -120,5 +122,5 @@ http://localhost:8080/swagger/index.html
 
 ## 许可证
 
-此项目基于 MIT 许可证开源 - 详情请参见 LICENSE 文件。
+版本后续 跟进中 有相关问题 请联系邮箱yuaizifeng@gmail.com
 
