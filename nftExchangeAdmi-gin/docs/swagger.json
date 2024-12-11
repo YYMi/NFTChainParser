@@ -1,0 +1,115 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API documentation for NFT Exchange Admin",
+        "title": "NFT Exchange Admin API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "192.168.10.66:19808",
+    "basePath": "/",
+    "paths": {
+        "/chainLink/Name/userList": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "11 用户管理"
+                ],
+                "summary": "获得所有的用户列表",
+                "parameters": [
+                    {
+                        "description": "请求参数-1",
+                        "name": "po",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/types.UserPO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "/chainLink/Name/users": {
+            "get": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "11 用户管理"
+                ],
+                "summary": "获得用户",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "请求参数-1",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "请求参数-2",
+                        "name": "aget",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/types.UserVO"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "types.UserPO": {
+            "type": "object",
+            "required": [
+                "age",
+                "name"
+            ],
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "types.UserVO": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

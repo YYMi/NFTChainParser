@@ -1,0 +1,75 @@
+basePath: /
+definitions:
+  types.UserPO:
+    properties:
+      age:
+        type: integer
+      name:
+        type: string
+    required:
+    - age
+    - name
+    type: object
+  types.UserVO:
+    properties:
+      id:
+        type: integer
+      message:
+        type: string
+      name:
+        type: string
+    type: object
+host: 192.168.10.66:19808
+info:
+  contact: {}
+  description: API documentation for NFT Exchange Admin
+  title: NFT Exchange Admin API
+  version: "1.0"
+paths:
+  /chainLink/Name/userList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 请求参数-1
+        in: body
+        name: po
+        required: true
+        schema:
+          $ref: '#/definitions/types.UserPO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+      summary: 获得所有的用户列表
+      tags:
+      - 11 用户管理
+  /chainLink/Name/users:
+    get:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: 请求参数-1
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 请求参数-2
+        in: formData
+        name: aget
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.UserVO'
+      summary: 获得用户
+      tags:
+      - 11 用户管理
+swagger: "2.0"

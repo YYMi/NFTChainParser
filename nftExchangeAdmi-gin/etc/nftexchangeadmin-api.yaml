@@ -1,0 +1,66 @@
+name: nftExchangeAdmin-api
+gin:
+  port: 19808
+  active: dev
+redis:
+  database: 0
+  password: 6MymlKxhBhRcYaT
+  cluster:
+    nodes: [ 10.44.27.13:5379,10.44.27.14:5379,10.44.27.7:5379,10.44.27.13:5380,10.44.27.14:5380,10.44.27.7:5380 ]
+datasource:
+  debug: true
+  service:
+    tcp: 10.44.27.131:3306
+    dbname: pork_strategy_game
+    username: devuser
+    password: epKGyxP!zO1rYjO
+  bc:
+    tcp: 10.44.27.131:3306
+    dbname: pork_strategy_nft
+    username: devuser
+    password: epKGyxP!zO1rYjO
+  bcSys:
+    tcp: 10.44.27.131:3306
+    dbname: pork_strategy_nft_sys
+    username: devuser
+    password: epKGyxP!zO1rYjO
+logger:
+  path: /Users/yuyong/Desktop/Golang/nftExchangeAdmi-gin/logs
+  fileName: nft-exchange-admin
+  level: info
+  maxSize: 100
+xxljob:
+  admin:
+    addresses: http://10.44.27.7:18080/xxl-job-admin
+  executor:
+    appname: go-bc-task-executor
+    port: 17925
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: nft-exchange #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Beareradmin  #JWT负载中拿到开头
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui.html
+      - /**/v3/api-docs
+      - /v3/**
+      - /**/v2/api-docs
+      - /swagger-resources/**
+      - /swagger**
+      - /swagger-ui/**
+      - /doc.html
+      - /ping
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+      - /chainLink/Name/**
+  encrypted:
+    timestamp: 10000000 #请求有效时间
+    urls:
+     - /ping
