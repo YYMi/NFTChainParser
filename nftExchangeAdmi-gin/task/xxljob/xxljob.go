@@ -2,6 +2,7 @@ package xxljob
 
 import (
 	"context"
+	"fmt"
 	"github.com/sirupsen/logrus"
 	"github.com/xxl-job/xxl-job-executor-go"
 	"nftExchangeAdmi-gin/config"
@@ -13,7 +14,18 @@ type logger struct{}
 var exec xxl.Executor
 
 func (l *logger) Info(format string, a ...interface{}) {
-	logrus.Infof(format, a...)
+	if format == "任务参数:%v" && a != nil {
+		// 将参数 a[0] 转换为 *xxl.RunReq 类型
+		param, ok := a[0].(*xxl.RunReq)
+		if !ok {
+			logrus.Error("参数类型转换失败，期望 *xxl.RunReq")
+			return
+		}
+
+		// 拼接完整日志消息
+		fullMessage := fmt.Sprintf("Xxjob func %s 任务参数 %s", param.ExecutorHandler, param.ExecutorParams)
+		logrus.Info(fullMessage)
+	}
 }
 
 func (l *logger) Error(format string, a ...interface{}) {

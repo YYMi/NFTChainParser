@@ -31,10 +31,17 @@ logger:
   maxSize: 100
 xxljob:
   admin:
-    addresses: http://10.44.27.7:18080/xxl-job-admin
+    addresses: http://10.44.27.139:8080/xxl-job-admin
   executor:
-    appname: go-bc-task-executor
+    appname: blockchain-test
     port: 17925
+mq:
+  rabbitmq:
+    addresses: 10.44.27.133:5672
+    virtual-host: /psg_dev
+    username: psg_mq_dev
+    password: 0bU97sIshIBHxMLspCuK
+    publisher-confirms: true
 jwt:
   tokenHeader: Authorization #JWT存储的请求头
   secret: nft-exchange #JWT加解密使用的密钥

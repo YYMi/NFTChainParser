@@ -66,6 +66,15 @@ type (
 		Expiration  int64  `yaml:"expiration"`  // JWT 的超期限时间（秒）
 		TokenHead   string `yaml:"tokenHead"`   // JWT 负载中拿到开头
 	}
+	MQ struct {
+		Rabbitmq struct {
+			Addresses         string `yaml:"addresses"`
+			VirtualHost       string `yaml:"virtual-host"`
+			Username          string `yaml:"username"`
+			Password          string `yaml:"password"`
+			PublisherConfirms bool   `yaml:"publisher-confirms"`
+		} `yaml:"rabbitmq"`
+	}
 )
 type Config struct {
 	Name       string     `yaml:"name"`
@@ -77,6 +86,7 @@ type Config struct {
 	Gin        Gin        `yaml:"gin"`
 	Secure     Secure     `yaml:"secure"`
 	JWT        JWT        `yaml:"jwt"`
+	MQ         MQ         `yaml:"mq"`
 }
 
 // MustLoad 从指定的文件路径加载配置到给定的结构体中。
